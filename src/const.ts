@@ -12,4 +12,5 @@ export const GRID = {
 export const RENDER = {
     FPS: 60,
     DT_S: 1 / 60, 
+    CELL_WIDTH: 2,      // 描画時の縦横比補正
 } as const
