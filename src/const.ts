@@ -8,3 +8,8 @@ export const GRID = {
     WIDTH: 80,
     HEIGHT: 40,
 } as const
+
+export const RENDER = {
+    FPS: 60,
+    DT_S: 1 / 60, 
+} as const

@@ -1,4 +1,5 @@
 import { log } from "./utils/logger";
+import { initDisplay, cleanupDisplay } from "./render/init";
 
 process.on("uncaughtException", (e) => {
     log.write("ERROR", `uncaught exception. (${(e as Error).message})(${(e as Error).stack})`);
@@ -14,8 +15,11 @@ process.on("unhandledRejection", (reason) => {
 function main() {
     try {
         log.write("INFO", 'process starting...');
+        initDisplay();
 
+        cleanupDisplay();
         process.on("SIGTERM", () => { 
+            cleanupDisplay();
             process.exit(0);
         });
     } catch (e) {

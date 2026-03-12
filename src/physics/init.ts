@@ -1,5 +1,5 @@
-import { GRID } from "./const";
-import { PhysicsObject, Grid } from "./types";
+import { GRID } from "@/const";
+import { PhysicsObject, Grid } from "@/types";
 
 export const initGrid = (gridWidth?: number, gridHeight?: number): Grid => {
     const width = gridWidth ?? GRID.WIDTH;
