@@ -1,6 +1,6 @@
 import { RENDER } from "@/const";
 import { Grid, Cell } from "@/types"
-import { initGrid } from "../physics/init"
+import { initGrid, copyGrid } from "@/core/grid";
 
 let prevGrid: Grid = initGrid();
 
@@ -23,14 +23,6 @@ const renderDiff = (prevGrid: Grid, currGrid: Grid): void => {
             if (currGrid[y][x] !== prevGrid[y][x]) {
                 drawCell(x, y, currGrid[y][x]);
             }
-        }
-    }
-}
-
-const copyGrid = (src: Grid, dst: Grid): void => {
-    for (let y = 0; y < src.length; y++) {
-        for (let x = 0; x < src[y].length; x++) {
-            dst[y][x] = src[y][x];
         }
     }
 }
