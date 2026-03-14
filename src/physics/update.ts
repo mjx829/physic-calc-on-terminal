@@ -1,5 +1,5 @@
 import { PHYSICS } from "@/const";
-import { PhysicsObject } from "@/types";
+import { PhysicsObject, Objects } from "@/types";
 
 const applyGravity = (obj: PhysicsObject): void => {
     obj.velocity.vy += PHYSICS.GRAVITY_M_S2 * PHYSICS.DT_S
@@ -15,6 +15,10 @@ const updatePosition = (obj: PhysicsObject): void => {
     obj.position.y += obj.velocity.vy * PHYSICS.DT_S;
 }
 
-const checkBoundary = (obj: PhysicsObject): void => {
-
+const physicsUpdate = (objects: Objects): void => {
+    for (let i = 0; i < objects.length; i++) {
+        applyGravity(objects[i]);
+        clampVelocity(objects[i]);
+        updatePosition(objects[i]);
+    }
 }
