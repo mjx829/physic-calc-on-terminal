@@ -4,13 +4,17 @@ import { PhysicsObject, Grid } from "@/types";
 const detectCollisionX = (obj: PhysicsObject, grid: Grid): PhysicsObject | null => {
     let destX = Math.floor(obj.position.x + obj.velocity.vx * PHYSICS.DT_S);
     let currY = Math.floor(obj.position.y);
-    return grid[currY]?.[destX] ?? null;
+    const target = grid[currY]?.[destX] ?? null;
+    if (target === obj) return null;
+    return target;
 }
 
 const detectCollisionY = (obj: PhysicsObject, grid: Grid): PhysicsObject | null => {
     let destY = Math.floor(obj.position.y + obj.velocity.vy * PHYSICS.DT_S);
     let currX = Math.floor(obj.position.x);
-    return grid[destY]?.[currX] ?? null;
+    const target = grid[destY]?.[currX] ?? null;
+    if (target === obj) return null;
+    return target;
 }
 
 const resolveCollisionX = (obj: PhysicsObject, target: PhysicsObject): void => {

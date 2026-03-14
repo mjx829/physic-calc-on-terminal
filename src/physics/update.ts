@@ -1,5 +1,7 @@
 import { PHYSICS } from "@/const";
-import { PhysicsObject, Objects } from "@/types";
+import { PhysicsObject, Objects, Grid } from "@/types";
+import { handleCollision } from "./collision";
+import { projectToGrid } from "@/core/grid";
 
 const applyGravity = (obj: PhysicsObject): void => {
     obj.velocity.vy += PHYSICS.GRAVITY_M_S2 * PHYSICS.DT_S
@@ -15,10 +17,13 @@ const updatePosition = (obj: PhysicsObject): void => {
     obj.position.y += obj.velocity.vy * PHYSICS.DT_S;
 }
 
-const physicsUpdate = (objects: Objects): void => {
-    for (let i = 0; i < objects.length; i++) {
-        applyGravity(objects[i]);
-        clampVelocity(objects[i]);
-        updatePosition(objects[i]);
+export const physicsUpdate = (objects: Objects, grid: Grid): void => {
+    for (const obj of objects) {
+        if (obj.isStatic) continue;
+        applyGravity(obj);
+        clampVelocity(obj);
+        handleCollision(obj, grid);
+        updatePosition(obj);
     }
+    projectToGrid(grid, objects);
 }
