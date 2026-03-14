@@ -1,6 +1,6 @@
 import { log } from "./utils/logger";
 import { initGrid } from "./core/grid";
-import { initObjects } from "./physics/init"
+import { createObject, initObjects } from "./physics/init"
 import { initDisplay, cleanupDisplay } from "./render/init";
 import { startLoop } from "./loop";
 
@@ -23,6 +23,10 @@ function main() {
         const grid = initGrid();
         const objects = initObjects();
         startLoop(objects, grid);
+
+
+        setTimeout(() => {objects.push(createObject("あ", { x: -10, y: 20 }, false, { vx: 14, vy: 0 }))}, 10000)
+        setTimeout(() => {objects.push(createObject("あ", { x: -10, y: 20 }, false, { vx: 15, vy: 0 }))}, 22500)
 
         process.on("SIGTERM", () => { 
             cleanupDisplay();

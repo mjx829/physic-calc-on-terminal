@@ -6,14 +6,26 @@ export const createObject = (char: string, position: { x: number, y: number }, i
         position,
         velocity: { vx: initialVelocity.vx, vy: initialVelocity.vy},
         mass: 1.0,
-        restitution: 0.8,
+        restitution: 0.25,
         isStatic: isStatic,
     }
 }
 
 export const initObjects = (): Objects => {
     return [
-        createObject("*", { x: -10, y: 0 }, false, { vx: 10, vy: 0 }),
+        createObject("ぶ", { x: 23, y: 20 }, false, { vx: 20, vy: 20 }),
+        createObject("い", { x: 24, y: 20 }, false, { vx: 0, vy: 20 }),
+        createObject("〜", { x: 25, y: 20 }, false, { vx: 0, vy: 20 }),
+        createObject("ん", { x: 26, y: 20 }, false, { vx: 0, vy: 20 }),
+        createObject("あ", { x: 27, y: 20 }, false, { vx: 0, vy: 20 }),
+        createObject("あ", { x: 28, y: 20 }, false, { vx: 0, vy: 20 }),
+        createObject("あ", { x: -10, y: 0 }, false, { vx: 10, vy: 0 }),
+        createObject("あ", { x: -10, y: 20 }, false, { vx: 12, vy: 0 }),
+        createObject("あ", { x: -10, y: 20 }, false, { vx: 14, vy: 0 }),
+        createObject("あ", { x: 26, y: 20 }, false, { vx: 0, vy: 20 }),
+        createObject("あ", { x: 27, y: 20 }, false, { vx: 0, vy: 50 }),
+        createObject("あ", { x: 28, y: 20 }, false, { vx: -1, vy: -20 }),
+        createObject("あ", { x: 28, y: 20 }, false, { vx: -0.25, vy: -20 }),
         createObject("全", { x: 20, y: 50 }, true, { vx: 0, vy: 0 }),
         createObject("て", { x: 21, y: 50 }, true, { vx: 0, vy: 0 }),
         createObject("バ", { x: 22, y: 50 }, true, { vx: 0, vy: 0 }),
