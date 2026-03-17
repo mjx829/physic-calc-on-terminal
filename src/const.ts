@@ -1,11 +1,11 @@
 export const PHYSICS = {
-    GRAVITY_M_S2: 9.8,
+    GRAVITY_M_S2: 19,
     V_MAX_M_S: 480,    // 1 / DT_S
     DT_S: 1 / 480,
 } as const
 
 export const GRID = {
-    WIDTH: 120,
+    WIDTH: 100,
     HEIGHT: 60,
 } as const
 

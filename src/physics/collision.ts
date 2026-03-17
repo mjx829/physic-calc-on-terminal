@@ -19,12 +19,24 @@ const detectCollisionY = (obj: PhysicsObject, grid: Grid): PhysicsObject | null 
 
 const resolveCollisionX = (obj: PhysicsObject, target: PhysicsObject): void => {
     const restitution = (obj.restitution + target.restitution) / 2;
-    obj.velocity.vx *= -restitution;
+    const objVx = obj.velocity.vx
+    const targetVx = target.velocity.vx;
+
+    obj.velocity.vx = (targetVx - objVx) * restitution;
+    if (!target.isStatic) {
+        target.velocity.vx = (objVx - targetVx) * restitution;
+    }
 }
 
 const resolveCollisionY = (obj: PhysicsObject, target: PhysicsObject): void => {
     const restitution = (obj.restitution + target.restitution) / 2;
-    obj.velocity.vy *= -restitution;
+    const objVy = obj.velocity.vy
+    const targetVy = target.velocity.vy;
+
+    obj.velocity.vy = (targetVy - objVy) * restitution;
+    if (!target.isStatic) {
+        target.velocity.vx = (objVy - targetVy) * restitution;
+    }
 }
 
 export const handleCollision = (obj: PhysicsObject, grid: Grid): void => {

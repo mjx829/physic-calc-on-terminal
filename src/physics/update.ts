@@ -23,7 +23,11 @@ export const physicsUpdate = (objects: Objects, grid: Grid): void => {
         applyGravity(obj);
         clampVelocity(obj);
         handleCollision(obj, grid);
+    }
+    for (const obj of objects) {
+        if (obj.isStatic) continue;
         updatePosition(obj);
     }
+
     projectToGrid(grid, objects);
 }
