@@ -3,3 +3,5 @@ textAlign = "center"
 
 [[objects]]
 char = "全"
+velocity.vx = 80
+velocity.vy = 10

@@ -1,8 +1,9 @@
 import { log } from "./utils/logger";
 import { initGrid } from "./core/grid";
-import { initObjects } from "./physics/init"
 import { initDisplay, cleanupDisplay } from "./render/init";
 import { startLoop } from "./loop";
+import { loadInitObjects } from "@/core/json";
+import * as path from "path";
 
 process.on("uncaughtException", (e) => {
     log.write("ERROR", `uncaught exception. (${(e as Error).message})(${(e as Error).stack})`);
@@ -21,8 +22,11 @@ function main() {
         initDisplay();
 
         const grid = initGrid();
-        const objects = initObjects();
+        const configPath = path.join(__dirname, "./json/test.toml");
+        const objects = loadInitObjects(configPath);
         startLoop(objects, grid);
+
+
 
         process.on("SIGTERM", () => { 
             cleanupDisplay();

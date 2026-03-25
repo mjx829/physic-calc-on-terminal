@@ -5,12 +5,11 @@ import { log } from "@/utils/logger";
 import { PhysicsObject, PhysicsObjectConfig, PhysicsObjectConfigSchema} from "@/types";
 import { createObject } from "@/physics/init";
 
-const loadFile = (pathName: string) => {
-    const filePath = path.join(__dirname, pathName);
+const loadFile = (filePath: string) => {
     try {
         const data = fs.readFileSync(filePath, 'utf-8');
 
-        log.write("INFO", `file was loaded. (${filePath}`);
+        // log.write("INFO", `file was loaded. (${filePath}`);
         return parse(data);
     } catch (e) {
         log.write("WARN", `failed to load file. (${filePath})`);
@@ -49,15 +48,11 @@ const parseImportedObj = (data: any): PhysicsObject[] => {
     return [];
 }
 
-const loadInitObjects = (pathName: string) => {
+export const loadInitObjects = (pathName: string): PhysicsObject[] => {
     const data = loadFile(pathName);
     if (!data) return [];
 
     const obj = parseImportedObj(data);
 
-    console.log(obj);
-
-    return [];
+    return obj;
 }
-
-loadInitObjects("../json/test.toml");
