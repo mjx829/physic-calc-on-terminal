@@ -25,6 +25,8 @@ const resolveCollisionX = (obj: PhysicsObject, target: PhysicsObject): void => {
     obj.velocity.vx = (targetVx - objVx) * restitution;
     if (!target.isStatic) {
         target.velocity.vx = (objVx - targetVx) * restitution;
+    } else {
+        obj.velocity.vy *= (obj.friction + target.friction) / 2;
     }
 }
 
@@ -35,7 +37,9 @@ const resolveCollisionY = (obj: PhysicsObject, target: PhysicsObject): void => {
 
     obj.velocity.vy = (targetVy - objVy) * restitution;
     if (!target.isStatic) {
-        target.velocity.vx = (objVy - targetVy) * restitution;
+        target.velocity.vy = (objVy - targetVy) * restitution;
+    } else {
+        obj.velocity.vx *= (obj.friction + target.friction) / 2;
     }
 }
 

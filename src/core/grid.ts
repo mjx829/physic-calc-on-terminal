@@ -1,9 +1,10 @@
-import { GRID } from "@/const";
+import { RENDER } from "@/const";
 import { Grid, Objects } from "@/types";
 
 export const initGrid = (gridWidth?: number, gridHeight?: number): Grid => {
-    const width = gridWidth ?? GRID.WIDTH;
-    const height = gridHeight ?? GRID.HEIGHT;
+    const termSize = getTermSize();
+    const width = gridWidth ?? termSize.x;
+    const height = gridHeight ?? termSize.y;
 
     let grid: Grid = [];
     for (let y = 0; y < height; y++) {
@@ -37,8 +38,12 @@ export const projectToGrid = (grid: Grid, objects: Objects): void => {
     for (const obj of objects) {
         const x = Math.floor(obj.position.x);
         const y = Math.floor(obj.position.y);
-        if (x >= 0 && x < GRID.WIDTH && y >= 0 && y < GRID.HEIGHT) {
+        if (x >= 0 && x < grid[0].length && y >= 0 && y < grid.length) {
             grid[y][x] = obj;
         }
     }
+}
+
+export const getTermSize = (): { x: number, y: number } => {
+    return { x: process.stdout.columns / RENDER.CELL_WIDTH, y: process.stdout.rows }
 }

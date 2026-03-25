@@ -1,0 +1,5 @@
+[default]
+textAlign = "center"
+
+[[objects]]
+char = "全"
